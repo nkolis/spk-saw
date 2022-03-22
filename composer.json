@@ -1,0 +1,16 @@
+{
+    "name": "aplikasi/spk-saw",
+    "description": "Aplikasi Pendukung Keputusan - SAW",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "SPK\\App\\": "app"
+        }
+    },
+    "authors": [
+        {
+            "name": "kholis"
+        }
+    ],
+    "require": {}
+}
