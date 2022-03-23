@@ -4,13 +4,13 @@ namespace SPK\App\Controllers;
 
 use SPK\App\Cores\View;
 
-class HomeController
+class LaporanController
 {
     function index()
     {
         $model = [
-            "title" => "Dashboard"
+            "title" => "Laporan"
         ];
-        View::render('home', $model);
+        View::render('laporan', $model);
     }
 }
