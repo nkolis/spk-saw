@@ -7,10 +7,17 @@
             "SPK\\App\\": "app"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SPK\\App\\": "tests"
+        }
+    },
     "authors": [
         {
             "name": "kholis"
         }
     ],
-    "require": {}
+    "require": {
+        "phpunit/phpunit" : "9.5.19"
+    }
 }
