@@ -1,6 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use SPK\App\Repository\Repository;
+use SPK\App\Services\KriteriaService;
 
 class KriteriaTest extends TestCase
 {
@@ -18,8 +19,9 @@ class KriteriaTest extends TestCase
     }
 
     function testGetAll(){
-        $service = new Repository("kriteria");
-        $result = $service->getAll();
+        $repository = new Repository("kriteria");
+        $service = new KriteriaService($repository);
+        $result = $service->findAll();
         var_dump($result);
     }
 

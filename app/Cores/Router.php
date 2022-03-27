@@ -2,6 +2,8 @@
 
 namespace SPK\App\Cores;
 
+use SPK\App\Repository\Repository;
+
 class Router
 {
     private static array $routes = [];
@@ -25,7 +27,7 @@ class Router
         foreach(self::$routes as $route){
             $pattern = '#^' . $route['path'] . '$#';
             if(preg_match($pattern, $path, $values) && $method == $route['method']){
-
+              
                 $controller = new $route['controller'];
                 $function = $route['function'];
 

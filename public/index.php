@@ -8,6 +8,7 @@ use SPK\App\Controllers\{HomeController, KriteriaController, AlternatifControlle
 Router::add("GET", "/", HomeController::class, "index");
 Router::add("GET", "/kriteria", KriteriaController::class, "index");
 Router::add("GET", "/kriteria/tambah", KriteriaController::class, "tambah");
+Router::add("POST", "/kriteria/tambahKriteria", KriteriaController::class, "tambahKriteria");
 Router::add("GET", "/alternatif", AlternatifController::class, "index");
 Router::add("GET", "/penilaian", PenilaianController::class, "index");
 Router::add("GET", "/laporan", LaporanController::class, "index");

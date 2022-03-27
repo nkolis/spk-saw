@@ -3,7 +3,7 @@
         <h5>Tambah Kriteria</h5>
     </div>
     <div class="card-body">
-        <form>
+        <form method="POST" action="/kriteria/tambahKriteria">
             <div class="row mb-3">
                 <label for="inputIdKriteria" class="col-sm-2 col-form-label">Id Kriteria</label>
                 <div class="col-sm-10">
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary float-end">Sign in</button>
+            <button type="submit" name="submit" class="btn btn-primary float-end">Kirirm</button>
         </form>
 
     </div>
