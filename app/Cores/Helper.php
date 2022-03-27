@@ -31,7 +31,9 @@ class Helper
             return false;
         };
         return $statement->fetchAll();
-    }catch(\PDOException){
+    }catch(\PDOException $e){
+        var_dump($query);
+        var_dump($e->getMessage());
         return false;
     }
 }

@@ -17,4 +17,8 @@ class KriteriaService {
     function add(string $params, array $values){
         return $this->repository->add($params, $values);
     }
+    
+    function alter(string $table, string $column_name, string $nextquery){
+        return $this->repository->alter($table, $column_name, $nextquery);
+    }
 }

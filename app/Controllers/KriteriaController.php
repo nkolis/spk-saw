@@ -48,7 +48,18 @@ class KriteriaController
         
     
             if(is_array($this->service->add($parameter, $values))){
-                
+
+                $countkriteria = count($this->service->findAll());
+
+                $column_name = strtolower(str_replace(" ", "_", $values[1]));
+                $alternatif_last = $this->repository->findLastInsertId("SELECT nama_kriteria FROM kriteria ORDER BY id ASC LIMIT 2");
+
+                if($countkriteria <= 1){
+                    $this->service->alter('alternatif', $column_name, "varchar(50) not null after nama_alternatif");
+                } else {
+                    $this->service->alter('alternatif', $column_name, "varchar(50) not null after {$alternatif_last[0]['nama_kriteria']}");
+                }
+
                 header('Location: /kriteria');
                 exit;
             } else {
