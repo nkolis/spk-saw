@@ -41,13 +41,17 @@ use SPK\App\Cores\Config;
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav mt-4">
-                        <a class="nav-link" href="/">
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/">
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Beranda
                         </a>
                         <a class="nav-link" href="<?= Config::getBaseUrl() ?>/kriteria">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                             Kriteria
+                        </a>
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/penduduk">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Penduduk
                         </a>
                         <a class="nav-link" href="<?= Config::getBaseUrl() ?>/alternatif">
                             <div class="sb-nav-link-icon"><i class="fas fa-copy"></i></div>
