@@ -1,3 +1,7 @@
+<?php
+
+use SPK\App\Cores\Config;
+?>
 </div>
 </main>
 <footer class="py-4 bg-light mt-auto">
@@ -9,13 +13,13 @@
 </footer>
 </div>
 </div>
-<script src="../src/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="../src/js/scripts.js"></script>
+<script src="<?= Config::getBaseUrl() ?>/src/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="<?= Config::getBaseUrl() ?>/src/js/scripts.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> -->
-<!-- <script src="../src/js/chart-area-demo.js"></script>
-<script src="../src/js/chart-bar-demo.js"></script> -->
-<script src="../src/js/simple-datatables.js" crossorigin="anonymous"></script>
-<script src="../src/js/datatables-simple-demo.js"></script>
+<!-- <script src="<?= Config::getBaseUrl() ?>/src/js/chart-area-demo.js"></script>
+<script src="<?= Config::getBaseUrl() ?>/src/js/chart-bar-demo.js"></script> -->
+<script src="<?= Config::getBaseUrl() ?>/src/js/simple-datatables.js" crossorigin="anonymous"></script>
+<script src="<?= Config::getBaseUrl() ?>/src/js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

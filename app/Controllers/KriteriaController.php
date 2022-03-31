@@ -2,9 +2,11 @@
 
 namespace SPK\App\Controllers;
 
+use SPK\App\Cores\Router;
 use SPK\App\Cores\View;
 use SPK\App\Repository\Repository;
 use SPK\App\Services\KriteriaService;
+use SPK\App\Services\SubkriteriaService;
 
 class KriteriaController
 {
@@ -17,7 +19,7 @@ class KriteriaController
         $this->repository = new Repository('kriteria');
         $this->service = new KriteriaService($this->repository);
     }
-    
+
     function index()
     {
         $model = [
@@ -35,9 +37,23 @@ class KriteriaController
         View::render('kriteria/tambah', $model);
     }
 
-    function tambahKriteria(){
+    function subkriteria()
+    {
 
-        if(isset($_POST['submit'])){
+        $subkriteriaRepo = new Repository('subkriteria');
+        $subkriteriaServ = new SubkriteriaService($subkriteriaRepo);
+        $model = [
+            "title" => "Subkriteria",
+            "subkriteria" => $subkriteriaServ->findById('id_kriteria',  Router::getParamaterValue()[0]),
+            "kriteria" => $this->service->findById('id_kriteria', Router::getParamaterValue()[0])
+        ];
+        View::render('kriteria/subkriteria', $model);
+    }
+
+    function tambahKriteria()
+    {
+
+        if (isset($_POST['submit'])) {
             $parameter = 'id_kriteria, nama_kriteria, bobot, tipe';
             $values = [
                 $_POST['id_kriteria'],
@@ -45,20 +61,10 @@ class KriteriaController
                 $_POST['bobot_kriteria'],
                 $_POST['tipe_kriteria']
             ];
-        
-    
-            if(is_array($this->service->add($parameter, $values))){
 
-                $countkriteria = count($this->service->findAll());
 
-                $column_name = strtolower(str_replace(" ", "_", $values[1]));
-                $alternatif_last = $this->repository->findLastInsertId("SELECT nama_kriteria FROM kriteria ORDER BY id ASC LIMIT 2");
+            if (is_array($this->service->add($parameter, $values))) {
 
-                if($countkriteria <= 1){
-                    $this->service->alter('alternatif', $column_name, "varchar(50) not null after nama_alternatif");
-                } else {
-                    $this->service->alter('alternatif', $column_name, "varchar(50) not null after {$alternatif_last[0]['nama_kriteria']}");
-                }
 
                 header('Location: /kriteria');
                 exit;

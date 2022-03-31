@@ -5,10 +5,15 @@ namespace SPK\App\Services;
 use SPK\App\Repository\Repository;
 
 
-class KriteriaService
+class SubkriteriaService
 {
     public function __construct(private Repository $repository)
     {
+    }
+
+    function findAll()
+    {
+        return $this->repository->getAll();
     }
 
     function findById($param, $id)
@@ -16,11 +21,6 @@ class KriteriaService
         $result = $this->repository->findById($param, $id);
         if (is_array($result)) return $result;
         return [];
-    }
-
-    function findAll()
-    {
-        return $this->repository->getAll();
     }
 
     function add(string $params, array $values)

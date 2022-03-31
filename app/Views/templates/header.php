@@ -1,3 +1,7 @@
+<?php
+
+use SPK\App\Cores\Config;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +12,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title><?= $model['title'] ?></title>
-    <link href="../src/css/datatables.css" rel="stylesheet" />
-    <link href="../src/css/styles.css" rel="stylesheet" />
-    <script src="../src/js/all-min.js" crossorigin="anonymous"></script>
+    <link href="<?= Config::getBaseUrl() ?>/src/css/datatables.css" rel="stylesheet" />
+    <link href="<?= Config::getBaseUrl() ?>/src/css/styles.css" rel="stylesheet" />
+    <script src="<?= Config::getBaseUrl() ?>/src/js/all-min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -36,29 +40,29 @@
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                    <div class="nav">
+                    <div class="nav mt-4">
                         <a class="nav-link" href="/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-circle"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Beranda
                         </a>
-                        <a class="nav-link" href="/kriteria">
-                            <div class="sb-nav-link-icon"><i class="fas fa-circle"></i></div>
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/kriteria">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                             Kriteria
                         </a>
-                        <a class="nav-link" href="/alternatif">
-                            <div class="sb-nav-link-icon"><i class="fas fa-circle"></i></div>
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/alternatif">
+                            <div class="sb-nav-link-icon"><i class="fas fa-copy"></i></div>
                             Alternatif
                         </a>
-                        <a class="nav-link" href="/penilaian">
-                            <div class="sb-nav-link-icon"><i class="fas fa-circle"></i></div>
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/penilaian">
+                            <div class="sb-nav-link-icon"><i class="fas fa-paste"></i></div>
                             Penilaian
                         </a>
-                        <a class="nav-link" href="/laporan">
-                            <div class="sb-nav-link-icon"><i class="fas fa-circle"></i></div>
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/laporan">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                             Laporan
                         </a>
-                        <a class="nav-link" href="/pengguna">
-                            <div class="sb-nav-link-icon"><i class="fas fa-circle"></i></div>
+                        <a class="nav-link" href="<?= Config::getBaseUrl() ?>/pengguna">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Pengguna
                         </a>
                     </div>
