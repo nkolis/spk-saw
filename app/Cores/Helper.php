@@ -34,6 +34,7 @@ class Helper
             return $statement->fetchAll();
         } catch (\PDOException $e) {
             var_dump($e->getMessage());
+            exit;
             return false;
         }
     }

@@ -2,6 +2,7 @@
 
 namespace SPK\App\Controllers;
 
+use SPK\App\Cores\Router;
 use SPK\App\Cores\View;
 use SPK\App\Repository\Repository;
 use SPK\App\Services\AlternatifService;
@@ -25,5 +26,15 @@ class AlternatifController
             "alternatif" => $this->service->findAll()
         ];
         View::render('alternatif', $model);
+    }
+
+    function detail()
+    {
+
+        $model = [
+            "title" => "Detail Alternatif",
+            "alternatif" => $this->service->getAlternatifByIdDynamic(Router::getParamaterValue()[0])
+        ];
+        View::render('alternatif/detail', $model);
     }
 }
