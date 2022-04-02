@@ -46,4 +46,10 @@ class Repository
 
         return Helper::query($query, $values);
     }
+
+    public function findAllDynamic(string $query)
+    {
+
+        return Helper::query($query);
+    }
 }

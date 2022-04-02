@@ -2,7 +2,6 @@
 
 namespace SPK\App\Services;
 
-use LDAP\Result;
 use SPK\App\Repository\Repository;
 
 
