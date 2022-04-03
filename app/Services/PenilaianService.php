@@ -75,7 +75,6 @@ class PenilaianService
         $result = $this->repository->findAllDynamic($query);
         $map = [];
         foreach ($result as $row) {
-
             $map[$row['id_alternatif']]["nama_alternatif"] = $row['nama_alternatif'];
             if ($row['tipe'] == 'benefit') {
                 $map[$row['id_alternatif']][$row["id_kriteria"]] = $row['bobot'] / max(array_column($result, 'bobot'));
@@ -83,12 +82,30 @@ class PenilaianService
                 $map[$row['id_alternatif']][$row["id_kriteria"]] = min(array_column($result, 'bobot')) / $row['bobot'];
             }
         }
-
         $result = [];
         foreach ($map as $index => $row) {
             $result[] = $row;
         }
+        return $result;
+    }
 
+    function getPrefrensi()
+    {
+        $result = $this->getNormalisasiMatrik();
+        $this->repository = new Repository("kriteria");
+        $kriteria = $this->repository->getAll();
+        $total = 0;
+        global $total;
+        foreach ($result as $i => $row) {
+            foreach ($kriteria as $k) {
+                if (key_exists($k['id_kriteria'], $row)) {
+                    $result[$i][$k['id_kriteria']] = $row[$k['id_kriteria']] * $k['bobot'];
+                    $total += $result[$i][$k['id_kriteria']];
+                    $result[$i]['total'] = $total;
+                }
+            }
+            $total = 0;
+        }
         return $result;
     }
 }

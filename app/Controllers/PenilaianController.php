@@ -13,10 +13,12 @@ class PenilaianController
 
         $repository = new Repository("data_alternatif");
         $service = new PenilaianService($repository);
+        $service->getPrefrensi();
         $model = [
             "title" => "Penilaian",
             "alternatif" => $service->getMatrik(),
-            "alternatif_normalisasi" => $service->getNormalisasiMatrik()
+            "alternatif_normalisasi" => $service->getNormalisasiMatrik(),
+            "alternatif_prefensi" => $service->getPrefrensi()
         ];
         View::render('penilaian', $model);
     }

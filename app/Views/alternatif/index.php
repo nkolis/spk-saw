@@ -12,7 +12,7 @@ use SPK\App\Cores\Config;
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>A</th>
                     <th>Nama Alternatif</th>
                     <th>Aksi</th>
                 </tr>
