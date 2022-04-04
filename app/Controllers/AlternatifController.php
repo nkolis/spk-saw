@@ -35,6 +35,7 @@ class AlternatifController
             "title" => "Detail Alternatif",
             "alternatif" => $this->service->getAlternatifByIdDynamic(Router::getParamaterValue()[0])
         ];
-        View::render('alternatif/detail', $model);
+        echo json_encode($model);
+        exit;
     }
 }

@@ -2,9 +2,9 @@
 
 use SPK\App\Cores\Config;
 ?>
-<div class="card mt-4">
+<div class="card card-primary card-outline">
     <div class="card-header">
-        <h5>Penilaian</h5>
+        <h5 class="card-title">Penilaian</h5>
     </div>
     <div class="card-body">
         <p><b>Matriks</b></p>

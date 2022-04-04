@@ -1,6 +1,6 @@
-<div class="card mt-4">
+<div class="card card-primary card-outline">
     <div class="card-header">
-        <h5>Dashboard</h5>
+        <h5 class="card-title">Dashboard</h5>
     </div>
     <div class="card-body">
         <h5 class="card-title">Selamat datang Admin</h5>

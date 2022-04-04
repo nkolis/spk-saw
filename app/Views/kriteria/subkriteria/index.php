@@ -2,9 +2,9 @@
 
 use SPK\App\Cores\Config;
 ?>
-<div class="card">
+<div class="card card-primary card-outline">
     <div class="card-header">
-        <h5>Kriteria : <?= $model['kriteria'][0]['nama_kriteria'] ?> / <?= $model['kriteria'][0]['id_kriteria'] ?></h5>
+        <h5 class="card-title">Kriteria : <?= $model['kriteria'][0]['nama_kriteria'] ?> / <?= $model['kriteria'][0]['id_kriteria'] ?></h5>
     </div>
     <div class="card-body">
         <a href="kriteria/tambah" class="btn bg-gradient-primary mb-3">Tambah Subkriteria</a>

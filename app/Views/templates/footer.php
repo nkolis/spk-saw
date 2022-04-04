@@ -8,10 +8,10 @@ use SPK\App\Cores\Config;
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2022 <a href="https://nkolis.github.io">Nkolis</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
+        <b>Version</b> 1.0.0
     </div>
 </footer>
 
@@ -107,6 +107,33 @@ use SPK\App\Cores\Config;
             "responsive": true,
         });
 
+        $('a[data-target="#modal-alternatif"]').click(function() {
+            const id = $(this).data('id');
+            $.ajax({
+                url: `<?= Config::getBaseUrl() ?>/alternatif/detail/id/${id}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function(data) {
+                    for (key in data.alternatif[0]) {
+                        const value = data.alternatif[0][key];
+                        key = key.replace('_', ' ').toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                            return letter.toUpperCase();
+                        });
+                        $("#modal-alternatif .modal-body").append(
+                            `<div class="row"><div class="col-md-4">${key}</div><div>:</div> <div class="col-md-4">${value}</div></row>`
+                        );
+                    }
+
+                }
+            });
+
+            $('#modal-alternatif button[data-dismiss="modal"').click(() => {
+                $("#modal-alternatif .modal-body").html('');
+            })
+
+        })
+
 
     });
 
@@ -115,7 +142,7 @@ use SPK\App\Cores\Config;
         // Will only work if string in href matches with location
         $('.nav-item a[href="' + url + '"]').addClass('active');
 
-        // Will also work for relative and absolute hrefs
+        // Will also work for relative and absolute href
 
     });
 </script>

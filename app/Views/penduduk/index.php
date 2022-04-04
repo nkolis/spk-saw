@@ -2,9 +2,9 @@
 
 use SPK\App\Cores\Config;
 ?>
-<div class="card">
+<div class="card card-primary card-outline">
     <div class="card-header">
-        <h5>Penduduk</h5>
+        <h5 class="card-title">Penduduk</h5>
     </div>
     <div class="card-body">
         <a href="kriteria/tambah" class="btn btn-primary mb-3">Tambah penduduk</a>

@@ -2,9 +2,9 @@
 
 use SPK\App\Cores\Config;
 ?>
-<div class="card">
+<div class="card card-primary card-outline">
     <div class="card-header">
-        <h5>Kriteria</h5>
+        <h5 class="card-title">Kriteria</h5>
     </div>
     <div class="card-body">
         <a href="kriteria/tambah" class="btn bg-gradient-primary mb-3">Tambah kriteria</a>
