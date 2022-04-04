@@ -2,14 +2,14 @@
 
 use SPK\App\Cores\Config;
 ?>
-<div class="card mt-4">
+<div class="card">
     <div class="card-header">
         <h5>Kriteria</h5>
     </div>
     <div class="card-body">
-        <a href="kriteria/tambah" class="btn btn-primary mb-3">Tambah kriteria</a>
+        <a href="kriteria/tambah" class="btn bg-gradient-primary mb-3">Tambah kriteria</a>
 
-        <table id="datatablesSimple">
+        <table id="default-datatable" class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
                     <th>No</th>
@@ -29,11 +29,11 @@ use SPK\App\Cores\Config;
                         <td><?= $data['bobot'] ?></td>
                         <td><?= $data['tipe'] ?></td>
                         <td>
-                            <div class="btn-group btn-group-sm">
-                                <a class="btn btn-primary" href='<?= Config::getBaseUrl() ?>/kriteria/subkriteria/id/<?= $data['id_kriteria'] ?>'>Subkriteria</a>
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </div>
+
+                            <a class="btn bg-gradient-primary btn-xs" href='<?= Config::getBaseUrl() ?>/kriteria/subkriteria/id/<?= $data['id_kriteria'] ?>'>Subkriteria</a>
+                            <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn bg-gradient-success btn-xs"><i class="fas fa-edit"></i></a>
+                            <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn bg-gradient-danger btn-xs"><i class="fas fa-trash"></i></a>
+
                         </td>
                     </tr>
                 <?php } ?>

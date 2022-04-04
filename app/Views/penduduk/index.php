@@ -2,14 +2,14 @@
 
 use SPK\App\Cores\Config;
 ?>
-<div class="card mt-4">
+<div class="card">
     <div class="card-header">
         <h5>Penduduk</h5>
     </div>
     <div class="card-body">
         <a href="kriteria/tambah" class="btn btn-primary mb-3">Tambah penduduk</a>
 
-        <table id="datatablesSimple">
+        <table id="default-datatable" class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
                     <th>No</th>
@@ -29,10 +29,10 @@ use SPK\App\Cores\Config;
                         <td><?= ($data['jenkel'] == 'l') ? 'Laki-laki' : 'Perempuan' ?></td>
                         <td><?= $data['alamat'] ?></td>
                         <td>
-                            <div class="btn-group btn-group-sm">
-                                <a href="<?= Config::getBaseUrl() ?>/penduduk/edit/id/<?= $data['id'] ?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                <a href="<?= Config::getBaseUrl() ?>/penduduk/hapus/id/<?= $data['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </div>
+
+                            <a href="<?= Config::getBaseUrl() ?>/penduduk/edit/id/<?= $data['id'] ?>" class="btn bg-gradient-success btn-xs"><i class="fas fa-edit"></i></a>
+                            <a href="<?= Config::getBaseUrl() ?>/penduduk/hapus/id/<?= $data['id'] ?>" class="btn bg-gradient-danger btn-xs"><i class="fas fa-trash"></i></a>
+
                         </td>
                     </tr>
                 <?php } ?>

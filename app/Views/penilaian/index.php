@@ -7,8 +7,8 @@ use SPK\App\Cores\Config;
         <h5>Penilaian</h5>
     </div>
     <div class="card-body">
-        <p>Matrik</p>
-        <table class="table table-bordered table-hover">
+        <p><b>Matriks</b></p>
+        <table id="simple-datatable" class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
                     <th>Alternatif</th>
@@ -31,22 +31,14 @@ use SPK\App\Cores\Config;
                         <td>A<?= $no + 1 ?></td>
                         <?php foreach ($data as $key => $row) {
                         ?>
-
                             <td><?= $row ?></td>
-                            <!-- <td>
-                            <div class="btn-group btn-group-sm">
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </div>
-                        </td> -->
                         <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-
-        <p>Normalisasi Matrik -R</p>
-        <table class="table table-bordered table-hover">
+        <p class="mt-4"><b>Normalisasi Matrik -R</b></p>
+        <table id="simple-datatable2" class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
                     <th>R</th>
@@ -69,22 +61,15 @@ use SPK\App\Cores\Config;
                         <td>R<?= $no + 1 ?></td>
                         <?php foreach ($data as $key => $row) {
                         ?>
-
                             <td><?= $row ?></td>
-                            <!-- <td>
-                            <div class="btn-group btn-group-sm">
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </div>
-                        </td> -->
                         <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
 
-        <p>Nilai Prefensi (V)</p>
-        <table class="table table-bordered table-hover">
+        <p class="mt-4"><b>Nilai Prefensi (V)</b></p>
+        <table id="simple-datatable3" class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
                     <th>V</th>
@@ -108,14 +93,7 @@ use SPK\App\Cores\Config;
                         <td>V<?= $no + 1 ?></td>
                         <?php foreach ($data as $key => $row) {
                         ?>
-
                             <td><?= $row ?></td>
-                            <!-- <td>
-                            <div class="btn-group btn-group-sm">
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </div>
-                        </td> -->
                         <?php } ?>
                     </tr>
                 <?php } ?>
