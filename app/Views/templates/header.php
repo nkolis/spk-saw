@@ -1,6 +1,6 @@
 <?php
 
-use SPK\App\Cores\Config;
+use SPK\App\Core\Config;
 ?>
 <!DOCTYPE html>
 <html lang="en">

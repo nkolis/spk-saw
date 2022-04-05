@@ -2,7 +2,7 @@
 
 namespace SPK\App\Repository;
 
-use SPK\App\Cores\Helper;
+use SPK\App\Core\Helper;
 
 class Repository
 {
@@ -47,9 +47,8 @@ class Repository
         return Helper::query($query, $values);
     }
 
-    public function findAllDynamic(string $query)
+    public function otherQuery(string $query, array $values)
     {
-
-        return Helper::query($query);
+        return Helper::query($query, $values);
     }
 }

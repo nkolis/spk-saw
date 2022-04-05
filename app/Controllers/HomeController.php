@@ -2,17 +2,15 @@
 
 namespace SPK\App\Controllers;
 
-use SPK\App\Cores\View;
-use SPK\App\Repository\Repository;
-use SPK\App\Services\{KriteriaService};
+use SPK\App\Core\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
     function index()
     {
         $model = [
             "title" => "Dashboard"
         ];
-        View::render('home', $model);
+        $this->view('home', $model);
     }
 }

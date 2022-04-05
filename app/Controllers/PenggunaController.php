@@ -2,15 +2,16 @@
 
 namespace SPK\App\Controllers;
 
-use SPK\App\Cores\View;
+use SPK\App\Core\Controller;
+use SPK\App\Core\View;
 
-class PenggunaController
+class PenggunaController extends Controller
 {
     function index()
     {
         $model = [
             "title" => "Pengguna"
         ];
-        View::render('pengguna', $model);
+        $this->view('pengguna', $model);
     }
 }

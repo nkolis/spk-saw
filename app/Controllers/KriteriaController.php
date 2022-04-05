@@ -2,31 +2,19 @@
 
 namespace SPK\App\Controllers;
 
-use SPK\App\Cores\Router;
-use SPK\App\Cores\View;
-use SPK\App\Repository\Repository;
-use SPK\App\Services\KriteriaService;
-use SPK\App\Services\SubkriteriaService;
+use SPK\App\Core\Router;
+use SPK\App\Core\Controller;
 
-class KriteriaController
+class KriteriaController extends Controller
 {
-
-    private Repository $repository;
-    private KriteriaService $service;
-
-    public function __construct()
-    {
-        $this->repository = new Repository('kriteria');
-        $this->service = new KriteriaService($this->repository);
-    }
 
     function index()
     {
         $model = [
             "title" => "Kriteria",
-            "kriteria" => $this->service->findAll()
+            "kriteria" => $this->model('Kriteria_Model')->findAll()
         ];
-        View::render('kriteria', $model);
+        $this->view('kriteria', $model);
     }
 
     function tambah()
@@ -34,21 +22,21 @@ class KriteriaController
         $model = [
             "title" => "Tambah Kriteria"
         ];
-        View::render('kriteria/tambah', $model);
+        $this->view('kriteria/tambah', $model);
     }
 
-    function subkriteria()
-    {
+    // function subkriteria()
+    // {
 
-        $subkriteriaRepo = new Repository('subkriteria');
-        $subkriteriaServ = new SubkriteriaService($subkriteriaRepo);
-        $model = [
-            "title" => "Subkriteria",
-            "subkriteria" => $subkriteriaServ->findById('id_kriteria',  Router::getParamaterValue()[0]),
-            "kriteria" => $this->service->findById('id_kriteria', Router::getParamaterValue()[0])
-        ];
-        View::render('kriteria/subkriteria', $model);
-    }
+    //     $subkriteriaRepo = new Repository('subkriteria');
+    //     $subkriteriaServ = new Subkriteria_Model($subkriteriaRepo);
+    //     $model = [
+    //         "title" => "Subkriteria",
+    //         "subkriteria" => $subkriteriaServ->findById('id_kriteria',  Router::getParamaterValue()[0]),
+    //         "kriteria" => $this->service->findById('id_kriteria', Router::getParamaterValue()[0])
+    //     ];
+    //     View::render('kriteria/subkriteria', $model);
+    // }
 
     function tambahKriteria()
     {
@@ -63,7 +51,7 @@ class KriteriaController
             ];
 
 
-            if (is_array($this->service->add($parameter, $values))) {
+            if (is_array($this->model('Kriteria_Model')->add($parameter, $values))) {
 
 
                 header('Location: /kriteria');

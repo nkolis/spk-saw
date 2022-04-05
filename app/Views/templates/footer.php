@@ -1,6 +1,6 @@
 <?php
 
-use SPK\App\Cores\Config;
+use SPK\App\Core\Config;
 ?>
 </div><!-- /.container-fluid -->
 </section>

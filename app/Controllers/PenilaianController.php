@@ -2,24 +2,19 @@
 
 namespace SPK\App\Controllers;
 
-use SPK\App\Cores\View;
-use SPK\App\Repository\Repository;
-use SPK\App\Services\PenilaianService;
+use SPK\App\Core\Controller;
 
-class PenilaianController
+class PenilaianController extends Controller
 {
     function index()
     {
-
-        $repository = new Repository("data_alternatif");
-        $service = new PenilaianService($repository);
-        $service->getPrefrensi();
+        $penilaian_model = $this->model('Penilaian_Model');
         $model = [
             "title" => "Penilaian",
-            "alternatif" => $service->getMatrik(),
-            "alternatif_normalisasi" => $service->getNormalisasiMatrik(),
-            "alternatif_prefensi" => $service->getPrefrensi()
+            "alternatif" => $penilaian_model->getMatrik(),
+            "alternatif_normalisasi" => $penilaian_model->getNormalisasiMatrik(),
+            "alternatif_prefensi" => $penilaian_model->getPrefrensi()
         ];
-        View::render('penilaian', $model);
+        $this->view('penilaian', $model);
     }
 }

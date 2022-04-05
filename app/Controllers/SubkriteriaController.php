@@ -2,19 +2,19 @@
 
 namespace SPK\App\Controllers;
 
+use SPK\App\Core\Router;
 use SPK\App\Core\Controller;
 
-class PendudukController extends Controller
+class SubkriteriaController extends Controller
 {
-
 
     function index()
     {
         $model = [
-            "title" => "Penduduk",
-            "penduduk" => $this->model('Penduduk_Model')->findAll()
+            "title" => "Kriteria",
+            "subkriteria" => $this->model('Subkriteria_Model')->findById('id_kriteria', Router::getParamaterValue()[0])
         ];
-        $this->view('penduduk', $model);
+        $this->view('kriteria/subkriteria', $model);
     }
 
     function tambah()

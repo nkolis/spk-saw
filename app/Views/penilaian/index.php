@@ -1,6 +1,6 @@
 <?php
 
-use SPK\App\Cores\Config;
+use SPK\App\Core\Config;
 ?>
 <div class="card card-primary card-outline">
     <div class="card-header">

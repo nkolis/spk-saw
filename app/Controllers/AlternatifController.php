@@ -2,30 +2,19 @@
 
 namespace SPK\App\Controllers;
 
-use SPK\App\Cores\Router;
-use SPK\App\Cores\View;
-use SPK\App\Repository\Repository;
-use SPK\App\Services\AlternatifService;
+use SPK\App\Core\Controller;
+use SPK\App\Core\Router;
 
-class AlternatifController
+class AlternatifController extends Controller
 {
-
-    private Repository $repository;
-    private AlternatifService $service;
-
-    public function __construct()
-    {
-        $this->repository = new Repository('alternatif');
-        $this->service = new AlternatifService($this->repository);
-    }
 
     function index()
     {
         $model = [
             "title" => "Alternatif",
-            "alternatif" => $this->service->findAll()
+            "alternatif" => $this->model('Alternatif_Model')->findAll()
         ];
-        View::render('alternatif', $model);
+        $this->view('alternatif', $model);
     }
 
     function detail()
@@ -33,7 +22,7 @@ class AlternatifController
 
         $model = [
             "title" => "Detail Alternatif",
-            "alternatif" => $this->service->getAlternatifByIdDynamic(Router::getParamaterValue()[0])
+            "alternatif" => $this->model('Alternatif_Model')->findByIdDynamic(Router::getParamaterValue()[0])
         ];
         echo json_encode($model);
         exit;
