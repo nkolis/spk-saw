@@ -51,4 +51,9 @@ class Repository
     {
         return Helper::query($query, $values);
     }
+
+    public function rowCount()
+    {
+        return Helper::rowCount();
+    }
 }

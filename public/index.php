@@ -10,9 +10,12 @@ use SPK\App\Controllers\{HomeController, KriteriaController, SubkriteriaControll
 Router::add("GET", "/", HomeController::class, "index");
 //Kriteria
 Router::add("GET", "/kriteria", KriteriaController::class, "index");
-Router::add("GET", "/kriteria/tambah", KriteriaController::class, "tambah");
-Router::add("GET", "/kriteria/subkriteria/id/([0-9A-Za-z]*)", SubkriteriaController::class, "index");
+Router::add("POST", "/kriteria/id/([0-9A-Za-z]*)", KriteriaController::class, "getById");
 Router::add("POST", "/kriteria/tambahKriteria", KriteriaController::class, "tambahKriteria");
+Router::add("POST", "/kriteria/editKriteria", KriteriaController::class, "editKriteria");
+Router::add("POST", "/kriteria/delete/id/([0-9A-Za-z]*)", KriteriaController::class, "hapusKriteria");
+Router::add("GET", "/kriteria/subkriteria/id/([0-9A-Za-z]*)", SubkriteriaController::class, "index");
+Router::add("POST", "/subkriteria/tambahSubkriteria", SubkriteriaController::class, "tambahSubkriteria");
 //Penduduk
 Router::add("GET", "/penduduk", PendudukController::class, "index");
 //Alternatif

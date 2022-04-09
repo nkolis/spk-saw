@@ -5,6 +5,7 @@ namespace SPK\App\Core;
 class Database
 {
     private ?\PDO $conn;
+    private $rowCount;
     public function __construct()
     {
         $user = "root";
@@ -25,6 +26,33 @@ class Database
     public function getConnection(): \PDO
     {
         return $this->conn;
+    }
+
+    public function query(string $query, array $values = [])
+    {
+        try {
+
+            $statement = $this->conn->prepare($query);
+
+            if (count($values) == 0) {
+                $statement->execute();
+            } else {
+                $statement->execute($values);
+            }
+
+            $this->rowCount = $statement->rowCount();
+
+            return $statement->fetchAll();
+        } catch (\PDOException $e) {
+            $this->rowCount = $statement->rowCount();
+            var_dump($e->getMessage());
+        }
+    }
+
+    public function rowCount()
+    {
+        $row_c = $this->rowCount;
+        return (is_null($row_c)) ? 0 : $row_c;
     }
 
     public function __destruct()

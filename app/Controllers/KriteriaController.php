@@ -17,6 +17,14 @@ class KriteriaController extends Controller
         $this->view('kriteria', $model);
     }
 
+    function getById()
+    {
+        echo json_encode([
+            "kriteria" => $this->model('Kriteria_Model')->findById('id_kriteria', Router::getParamaterValue()[0])
+        ]);
+        exit;
+    }
+
     function tambah()
     {
         $model = [
@@ -40,20 +48,43 @@ class KriteriaController extends Controller
 
     function tambahKriteria()
     {
-
         if (isset($_POST['submit'])) {
-            $parameter = 'id_kriteria, nama_kriteria, bobot, tipe';
+
             $values = [
-                $_POST['id_kriteria'],
-                $_POST['nama_kriteria'],
-                $_POST['bobot_kriteria'],
-                $_POST['tipe_kriteria']
+                htmlspecialchars($_POST['id_kriteria']),
+                htmlspecialchars($_POST['nama_kriteria']),
+                htmlspecialchars($_POST['bobot_kriteria']),
+                htmlspecialchars($_POST['tipe_kriteria'])
             ];
 
+            if ($this->model('Kriteria_Model')->add($values)) {
+                header('Location: /kriteria');
+                exit;
+            } else {
+                echo "<script>Toast.fire({
+                    icon: 'error',
+                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                  });window.location.href = '/kriteria'</script>";
+                exit;
+            }
+        }
+    }
 
-            if (is_array($this->model('Kriteria_Model')->add($parameter, $values))) {
+    function editKriteria()
+    {
+        if (isset($_POST['submit'])) {
 
+            $param = 'id_kriteria';
+            $values = [
+                htmlspecialchars($_POST['nama_kriteria']),
+                htmlspecialchars($_POST['bobot_kriteria']),
+                htmlspecialchars($_POST['tipe_kriteria']),
+                htmlspecialchars($_POST['id_kriteria'])
+            ];
 
+            $params = "nama_kriteria = ?, bobot = ?, tipe = ?";
+
+            if ($this->model('Kriteria_Model')->update($params, $param, $values)) {
                 header('Location: /kriteria');
                 exit;
             } else {
@@ -61,5 +92,11 @@ class KriteriaController extends Controller
                 exit;
             }
         }
+    }
+
+    function hapusKriteria()
+    {
+        $this->model('Kriteria_Model')->remove(Router::getParamaterValue()[0]);
+        header('Location: /kriteria');
     }
 }
