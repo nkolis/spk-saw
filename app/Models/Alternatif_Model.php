@@ -38,8 +38,6 @@ class Alternatif_Model
             $values['nama_alternatif']
         ];
 
-
-
         $this->conn->query("INSERT INTO {$this->table} (nik, nama_alternatif)VALUES(?, ?)", $alternatif);
         $id_alternatif = $this->conn->lastInsertId();
         unset($values['nik']);
@@ -60,7 +58,12 @@ class Alternatif_Model
 
     function remove(string $id)
     {
-        return $this->repository->delete('id', $id);
+        $this->conn->query("DELETE FROM data_alternatif WHERE id_alternatif = ?", [$id]);
+        $this->conn->query("DELETE FROM alternatif WHERE id_alternatif = ?", [$id]);
+        if ($this->conn->rowCount() > 0) {
+            return true;
+        }
+        return false;
     }
 
     function findByIdDynamic(string|int $id)

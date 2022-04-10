@@ -143,6 +143,11 @@ $('.editpenduduk').click(function() {
 
 
 //alternatif
+$('button[data-target="#modal-alternatif"]').click(function() {
+    $('form').attr('action', `${base_url}/alternatif/tambahAlternatif`);
+    $('h4.modal-title').text('Tambah Alternatif');
+    
+})
 
 $('a[data-target="#modal-alternatif-detail"]').click(function() {
     const id = $(this).data('id');
@@ -167,6 +172,31 @@ $('a[data-target="#modal-alternatif-detail"]').click(function() {
 
         }
     });
+})
+
+$('.editalternatif').click(function() {
+    const id = $(this).data('idalternatif');
+    console.log(id);
+    $('form').attr('action', `${base_url}/alternatif/editAlternatif`);
+    $('form').append(`<input type="hidden" id="id_alternatif" name="id_alternatif" value="${id}">`);
+    $('h4.modal-title').text('Edit Alternatif');
+   
+    $('button[name=submit]').text('Update');
+
+    $.ajax({
+        url: `${base_url}/alternatif/id/${id}`,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        type: "post",
+        success: function(data) {
+            console.log(data)
+            const penduduk = data.penduduk;
+            penduduk.forEach(value => {
+                
+            });
+        }
+    });
+
 })
 
 $('#modal-alternatif-detail button[data-dismiss="modal"').click(() => {

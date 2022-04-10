@@ -41,7 +41,7 @@ class Kriteria_Model
         foreach ($alternatif as $row) {
             $id_kriteria = $values[0];
             $values = [$id_kriteria, $row['id_alternatif']];
-            $q_dalternatif = "INSERT INTO data_alternatif (id_kriteria, id_alternatif)VALUES(?, ?)";
+            $q_dalternatif = "INSERT INTO data_alternatif (id_kriteria, id_alternatif, id_subkriteria)VALUES(?, ?)";
             $this->conn->query($q_dalternatif, $values);
         }
 

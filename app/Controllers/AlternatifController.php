@@ -40,4 +40,11 @@ class AlternatifController extends Controller
             };
         }
     }
+
+
+    function hapusAlternatif()
+    {
+        $this->model('Alternatif_Model')->remove(Router::getParamaterValue()[0]);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+    }
 }

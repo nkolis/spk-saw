@@ -40,7 +40,7 @@ CREATE TABLE `alternatif` (
 
 LOCK TABLES `alternatif` WRITE;
 /*!40000 ALTER TABLE `alternatif` DISABLE KEYS */;
-INSERT INTO `alternatif` VALUES (10,'12989281298229','Adi','2022-04-10 15:37:35',NULL),(11,'12989281398229','Bayu','2022-04-10 15:43:40',NULL),(12,'343434','ffg','2022-04-10 15:53:41',NULL);
+INSERT INTO `alternatif` VALUES (10,'12989281298229','Adi','2022-04-10 15:37:35',NULL),(11,'12989281398229','Bayu','2022-04-10 15:43:40',NULL);
 /*!40000 ALTER TABLE `alternatif` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,10 +59,8 @@ CREATE TABLE `data_alternatif` (
   PRIMARY KEY (`id`),
   KEY `id_kriteria` (`id_kriteria`),
   KEY `fk_id_alternatif` (`id_alternatif`),
-  KEY `fk_id_subkriteria` (`id_subkriteria`),
   CONSTRAINT `data_alternatif_ibfk_2` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id_kriteria`),
-  CONSTRAINT `fk_id_alternatif` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id_alternatif`),
-  CONSTRAINT `fk_id_subkriteria` FOREIGN KEY (`id_subkriteria`) REFERENCES `subkriteria` (`id_subkriteria`)
+  CONSTRAINT `fk_id_alternatif` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id_alternatif`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -72,7 +70,7 @@ CREATE TABLE `data_alternatif` (
 
 LOCK TABLES `data_alternatif` WRITE;
 /*!40000 ALTER TABLE `data_alternatif` DISABLE KEYS */;
-INSERT INTO `data_alternatif` VALUES (29,10,'c1',22),(30,10,'c2',23),(31,11,'c1',22),(32,11,'c2',24),(33,12,'c1',25),(34,12,'c2',23);
+INSERT INTO `data_alternatif` VALUES (29,10,'c1',22),(30,10,'c2',23),(31,11,'c1',22),(32,11,'c2',24);
 /*!40000 ALTER TABLE `data_alternatif` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +169,7 @@ CREATE TABLE `subkriteria` (
   PRIMARY KEY (`id_subkriteria`),
   KEY `fk_id_kriteria` (`id_kriteria`),
   CONSTRAINT `fk_id_kriteria` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id_kriteria`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +178,7 @@ CREATE TABLE `subkriteria` (
 
 LOCK TABLES `subkriteria` WRITE;
 /*!40000 ALTER TABLE `subkriteria` DISABLE KEYS */;
-INSERT INTO `subkriteria` VALUES (22,'c1','s2',2),(23,'c2','&gt; 5KM',9),(24,'c2','&lt;5km',5),(25,'c1','s3',4);
+INSERT INTO `subkriteria` VALUES (23,'c2','&gt; 5KM',9),(24,'c2','&lt;5km',5),(26,'c1','s3',2);
 /*!40000 ALTER TABLE `subkriteria` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -193,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-10 23:01:11
+-- Dump completed on 2022-04-11  4:49:18

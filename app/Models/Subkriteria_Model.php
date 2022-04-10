@@ -59,6 +59,7 @@ class Subkriteria_Model
     function remove(string $id)
     {
         $this->conn->query("DELETE FROM {$this->table} WHERE id_subkriteria = $id");
+
         if ($this->conn->rowCount() > 0) {
             return true;
         }
