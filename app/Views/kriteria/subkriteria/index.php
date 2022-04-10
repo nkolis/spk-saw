@@ -25,8 +25,10 @@ use SPK\App\Core\Config;
                         <td><?= $data['bobot'] ?></td>
                         <td>
 
-                            <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn bg-gradient-success btn-xs"><i class="fas fa-edit"></i></a>
-                            <a href="<?= Config::getBaseUrl() ?>/kriteria/id/<?= $data['id_kriteria'] ?>" class="btn bg-gradient-danger btn-xs"><i class="fas fa-trash"></i></a>
+                            <a href="#" class="editsubkriteria btn bg-gradient-success btn-xs" data-toggle="modal" data-target="#modal-subkriteria" data-idsubkriteria="<?= $data['id_subkriteria'] ?>"><i class="fas fa-edit"></i></a>
+                            <form style="display: inline-block" action="<?= Config::getBaseUrl() ?>/subkriteria/delete/id/<?= $data['id_subkriteria'] ?>" method="post">
+                                <button type="submit" class="btn bg-gradient-danger btn-xs" data-idsubkriteria="<?= $data['id_subkriteria'] ?>"><i class="fas fa-trash"></i></button>
+                            </form>
 
                         </td>
                     </tr>

@@ -67,14 +67,15 @@ use SPK\App\Core\Config;
 
 <!-- <script src="<?= Config::getBaseUrl() ?>/dist/js/pages/dashboard.js"></script> -->
 <script>
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
     $(function() {
 
-        // var Toast = Swal.mixin({
-        //     toast: true,
-        //     position: 'top-end',
-        //     showConfirmButton: false,
-        //     timer: 3000
-        // });
+
 
 
         $("#default-datatable").DataTable({

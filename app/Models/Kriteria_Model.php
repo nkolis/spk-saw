@@ -32,7 +32,28 @@ class Kriteria_Model
 
     function add(array $values)
     {
-        $query = "INSERT INTO {$this->table} (id_kriteria, nama_kriteria, bobot, tipe)VALUES(?, ?, ?, ?)";
+        $q_kriteria = "INSERT INTO {$this->table} (id_kriteria, nama_kriteria, bobot, tipe)VALUES(?, ?, ?, ?)";
+        $this->conn->query($q_kriteria, $values);
+
+        $q_alternatif = "SELECT id_alternatif FROM alternatif";
+        $alternatif = $this->conn->query($q_alternatif);
+
+        foreach ($alternatif as $row) {
+            $id_kriteria = $values[0];
+            $values = [$id_kriteria, $row['id_alternatif']];
+            $q_dalternatif = "INSERT INTO data_alternatif (id_kriteria, id_alternatif)VALUES(?, ?)";
+            $this->conn->query($q_dalternatif, $values);
+        }
+
+        if ($this->conn->rowCount() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function update($values)
+    {
+        $query = "UPDATE {$this->table} SET nama_kriteria = ?, bobot = ?, tipe = ? WHERE id_kriteria = ?";
         $this->conn->query($query, $values);
         if ($this->conn->rowCount() > 0) {
             return true;
@@ -40,21 +61,12 @@ class Kriteria_Model
         return false;
     }
 
-    function update(string $params, string $param, $values)
-    {
-        $this->repository->update($params, $param, $values);
-        if ($this->repository->rowCount() > 0) {
-            return true;
-        }
-        return false;
-    }
-
     function remove(string $id)
     {
-        $this->repository->otherQuery("DELETE FROM data_alternatif where id_kriteria = ?", [$id]);
-        $this->repository->otherQuery("DELETE FROM subkriteria where id_kriteria = ?", [$id]);
-        $this->repository->delete('id', $id);
-        if ($this->repository->rowCount() > 0) {
+        $this->conn->query("DELETE FROM data_alternatif where id_kriteria = ?", [$id]);
+        $this->conn->query("DELETE FROM subkriteria where id_kriteria = ?", [$id]);
+        $this->conn->query("DELETE FROM {$this->table} where id_kriteria = ?", [$id]);
+        if ($this->conn->rowCount() > 0) {
             return true;
         }
         return false;

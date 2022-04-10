@@ -2,19 +2,25 @@
 
 namespace SPK\App\Models;
 
+use SPK\App\Core\Database;
 use SPK\App\Repository\Repository;
 
 
 class Alternatif_Model
 {
     private Repository $repository;
+    private Database $conn;
+    private string $table;
     public function __construct()
     {
         $this->repository = new Repository('alternatif');
+        $this->conn = new Database();
+        $this->table = "alternatif";
     }
+
     function findAll()
     {
-        return $this->repository->getAll();
+        return $this->conn->query("SELECT * FROM {$this->table}");
     }
 
     function findById($param, $id)
@@ -24,9 +30,32 @@ class Alternatif_Model
         return [];
     }
 
-    function add(string $params, array $values)
+    function add(array $values)
     {
-        return $this->repository->add($params, $values);
+
+        $alternatif = [
+            $values['nik'],
+            $values['nama_alternatif']
+        ];
+
+
+
+        $this->conn->query("INSERT INTO {$this->table} (nik, nama_alternatif)VALUES(?, ?)", $alternatif);
+        $id_alternatif = $this->conn->lastInsertId();
+        unset($values['nik']);
+        unset($values['nama_alternatif']);
+        foreach ($values as $key => $row) {
+            $value = [
+                $id_alternatif,
+                $key,
+                $row
+            ];
+            $this->conn->query("INSERT INTO data_alternatif (id_alternatif, id_kriteria, id_subkriteria)VALUES(?, ?, ?)", $value);
+        }
+        if ($this->conn->rowCount() > 0) {
+            return true;
+        }
+        return false;
     }
 
     function remove(string $id)
@@ -43,7 +72,7 @@ class Alternatif_Model
             s.nama_subkriteria
             from data_alternatif da join 
             alternatif a on a.id_alternatif = da.id_alternatif join
-            kriteria k on k.id_kriteria = da.id_kriteria join
+            kriteria k on k.id_kriteria = da.id_kriteria left join
             subkriteria s on s.id_subkriteria = da.id_subkriteria
             where da.id_alternatif = ?;
         ";

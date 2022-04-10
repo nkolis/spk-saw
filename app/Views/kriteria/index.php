@@ -32,7 +32,7 @@ use SPK\App\Core\Config;
 
                             <a class="btn bg-gradient-primary btn-xs" href='<?= Config::getBaseUrl() ?>/kriteria/subkriteria/id/<?= $data['id_kriteria'] ?>'>Subkriteria</a>
                             <a class="editkriteria btn bg-gradient-success btn-xs" data-toggle="modal" data-target="#modal-kriteria" data-idkriteria="<?= $data['id_kriteria'] ?>"><i class="fas fa-edit"></i></a>
-                            <form style="display: inline-block" action="<?= Config::getBaseUrl() ?>/kriteria/delete/id/<?= $data['id'] ?>" method="post">
+                            <form style="display: inline-block" action="<?= Config::getBaseUrl() ?>/kriteria/delete/id/<?= $data['id_kriteria'] ?>" method="post">
                                 <button type="submit" class="btn bg-gradient-danger btn-xs" data-idkriteria="<?= $data['id_kriteria'] ?>"><i class="fas fa-trash"></i></button>
                             </form>
 

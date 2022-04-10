@@ -20,7 +20,7 @@ class KriteriaController extends Controller
     function getById()
     {
         echo json_encode([
-            "kriteria" => $this->model('Kriteria_Model')->findById('id_kriteria', Router::getParamaterValue()[0])
+            "kriteria" => $this->model('Kriteria_Model')->findById(Router::getParamaterValue()[0])
         ]);
         exit;
     }
@@ -74,7 +74,7 @@ class KriteriaController extends Controller
     {
         if (isset($_POST['submit'])) {
 
-            $param = 'id_kriteria';
+
             $values = [
                 htmlspecialchars($_POST['nama_kriteria']),
                 htmlspecialchars($_POST['bobot_kriteria']),
@@ -82,9 +82,7 @@ class KriteriaController extends Controller
                 htmlspecialchars($_POST['id_kriteria'])
             ];
 
-            $params = "nama_kriteria = ?, bobot = ?, tipe = ?";
-
-            if ($this->model('Kriteria_Model')->update($params, $param, $values)) {
+            if ($this->model('Kriteria_Model')->update($values)) {
                 header('Location: /kriteria');
                 exit;
             } else {

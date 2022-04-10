@@ -15,11 +15,20 @@ Router::add("POST", "/kriteria/tambahKriteria", KriteriaController::class, "tamb
 Router::add("POST", "/kriteria/editKriteria", KriteriaController::class, "editKriteria");
 Router::add("POST", "/kriteria/delete/id/([0-9A-Za-z]*)", KriteriaController::class, "hapusKriteria");
 Router::add("GET", "/kriteria/subkriteria/id/([0-9A-Za-z]*)", SubkriteriaController::class, "index");
+Router::add("POST", "/subkriteria/id/([0-9A-Za-z]*)", SubkriteriaController::class, "getById");
 Router::add("POST", "/subkriteria/tambahSubkriteria", SubkriteriaController::class, "tambahSubkriteria");
+Router::add("POST", "/subkriteria/editSubkriteria", SubkriteriaController::class, "editSubkriteria");
+Router::add("POST", "/subkriteria/delete/id/([0-9A-Za-z]*)", SubkriteriaController::class, "hapusSubkriteria");
 //Penduduk
 Router::add("GET", "/penduduk", PendudukController::class, "index");
+Router::add("POST", "/penduduk/id/([0-9A-Za-z]*)", PendudukController::class, "getById");
+Router::add("POST", "/penduduk/nik/([0-9A-Za-z]*)", PendudukController::class, "getByNik");
+Router::add("POST", "/penduduk/tambahPenduduk", PendudukController::class, "tambahPenduduk");
+Router::add("POST", "/penduduk/editPenduduk", PendudukController::class, "editPenduduk");
+Router::add("POST", "/penduduk/delete/id/([0-9A-Za-z]*)", PendudukController::class, "hapusPenduduk");
 //Alternatif
 Router::add("GET", "/alternatif", AlternatifController::class, "index");
+Router::add("POST", "/alternatif/tambahAlternatif", AlternatifController::class, "tambahAlternatif");
 Router::add("GET", "/alternatif/detail/id/([0-9A-Za-z]*)", AlternatifController::class, "detail");
 //Penilaian
 Router::add("GET", "/penilaian", PenilaianController::class, "index");

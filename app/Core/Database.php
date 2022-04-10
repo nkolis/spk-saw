@@ -55,6 +55,11 @@ class Database
         return (is_null($row_c)) ? 0 : $row_c;
     }
 
+    public function lastInsertId()
+    {
+        return $this->conn->lastInsertId();
+    }
+
     public function __destruct()
     {
         $this->conn = null;

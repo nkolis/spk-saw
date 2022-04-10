@@ -12,7 +12,9 @@ class AlternatifController extends Controller
     {
         $model = [
             "title" => "Alternatif",
-            "alternatif" => $this->model('Alternatif_Model')->findAll()
+            "alternatif" => $this->model('Alternatif_Model')->findAll(),
+            "kriteria" => $this->model('Kriteria_Model')->findAll(),
+            "subkriteria" => $this->model('Subkriteria_Model')->findAll()
         ];
         $this->view('alternatif', $model);
     }
@@ -26,5 +28,16 @@ class AlternatifController extends Controller
         ];
         echo json_encode($model);
         exit;
+    }
+
+    function tambahAlternatif()
+    {
+        if (isset($_POST['submit'])) {
+            array_pop($_POST);
+            if ($this->model('Alternatif_Model')->add($_POST)) {
+                header("Location: {$_SERVER['HTTP_REFERER']} ");
+                exit;
+            };
+        }
     }
 }
