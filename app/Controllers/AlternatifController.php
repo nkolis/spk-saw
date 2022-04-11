@@ -26,8 +26,8 @@ class AlternatifController extends Controller
             "title" => "Detail Alternatif",
             "alternatif" => $this->model('Alternatif_Model')->findByIdDynamic(Router::getParamaterValue()[0])
         ];
-        echo json_encode($model);
-        exit;
+
+        $this->render("alternatif/modal/detail", $model);
     }
 
     function formAddAlternatif()
@@ -44,13 +44,11 @@ class AlternatifController extends Controller
 
     function tambahAlternatif()
     {
-        if (isset($_POST['submit'])) {
-            array_pop($_POST);
-            if ($this->model('Alternatif_Model')->add($_POST)) {
-                header("Location: {$_SERVER['HTTP_REFERER']} ");
-                exit;
-            };
-        }
+
+        if ($this->model('Alternatif_Model')->add($_POST)) {
+            header("Location: {$_SERVER['HTTP_REFERER']} ");
+            exit;
+        };
     }
 
 

@@ -104,6 +104,73 @@ use SPK\App\Core\Config;
 
 
         <!-- Sidebar Menu -->
+        <!-- <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/kriteria" class="nav-link">
+                <i class="nav-icon fas fa-file-alt"></i>
+                <p>
+                  Kriteria
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/penduduk" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Penduduk
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/alternatif" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Alternatif
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/penilaian" class="nav-link">
+                <i class="nav-icon fas fa-paste"></i>
+                <p>
+                  Penilaian
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/laporan" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p>
+                  Laporan
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= Config::getBaseUrl() ?>/pengguna" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Pengguna
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav> -->
+
+
+
+
+
+
+
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">

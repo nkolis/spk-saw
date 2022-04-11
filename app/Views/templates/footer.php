@@ -78,51 +78,15 @@ use SPK\App\Core\Config;
 
 
 
-        $("#default-datatable").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        })
-        //.buttons().container().appendTo('#default-datatable_wrapper .col-md-6:eq(0)');
-        $('#simple-datatable').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
 
-        $('#simple-datatable2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+        // $(document).ready(function() {
+        //     var url = window.location;
+        //     // Will only work if string in href matches with location
+        //     $('.nav-item a[href="' + url + '"]').addClass('active');
 
-        $('#simple-datatable3').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+        //     // Will also work for relative and absolute href
 
-        $(document).ready(function() {
-            var url = window.location;
-            // Will only work if string in href matches with location
-            $('.nav-item a[href="' + url + '"]').addClass('active');
-
-            // Will also work for relative and absolute href
-
-        });
+        // });
 
 
 

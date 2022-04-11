@@ -1,5 +1,60 @@
 const base_url = 'http://localhost:5000';
 
+$('a.nav-link').click(function(e){
+    
+    e.preventDefault()
+    const url = $(this).attr('href');
+    $(".container-fluid").load(`${url} .container-fluid`, function(){
+        $("#default-datatable").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            "bDestroy": true
+        })
+        //.buttons().container().appendTo('#default-datatable_wrapper .col-md-6:eq(0)');
+        $('#simple-datatable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "bDestroy": true
+        });
+
+        $('#simple-datatable2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "bDestroy": true
+        });
+
+        $('#simple-datatable3').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "bDestroy": true
+        });
+
+    })
+})
+$(document).click(function(e){
+    const target = e.target;
+    const attrId = target.getAttribute('id');
+   
+
+    
+
 // $('#modal-alternatif button[data-dismiss="modal"').click(() => {
 //     $("#modal-alternatif .modal-body").html('');
 // })
@@ -143,7 +198,9 @@ $('.editpenduduk').click(function() {
 
 
 //alternatif
-$('#form-tambah-alternatif').click(function() {
+
+if(attrId == 'form-tambah-alternatif'){
+
     $('form').attr('action', `${base_url}/alternatif/tambahAlternatif`);
     $('h4.modal-title').text('Tambah Alternatif');
 
@@ -152,35 +209,61 @@ $('#form-tambah-alternatif').click(function() {
         type: 'post',
         success: function(response){
             $("#modal-alternatif .modal-body").html(response);
+            $(".modal-title").text('Tambah Alternatif');
+            $("button[name=submit]").show();
         }
     })
     
-})
+}
 
-$('a[data-target="#modal-alternatif-detail"]').click(function() {
-    const id = $(this).data('id');
+if(attrId == 'simpan-alternatif'){
+    const form = $(".form-alternatif");
+    let data = null
+    form.find('input').each(function(i, e){
+        if($(e).val().length == 0){
+            Toast.fire({
+                icon: 'warning',
+                title: 'Tidak boleh kosong!'
+              });
+        } else {
+            data = $(".form-alternatif").serialize();
+        }
+
+       
+    })
+    
+    if(data!=null){
+        $.ajax({
+            url: `${base_url}/alternatif/tambahAlternatif`,
+            type: 'post',
+            data: data,
+            success: function(){
+               
+                $("#modal-alternatif").modal('hide');
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Berhasil menyimpan!'
+                });
+                $(".table").load(`${base_url}/alternatif .table`)
+            }
+        })
+     }
+}
+
+
+if(attrId == 'detail-alternatif'){
+    const id = target.dataset.id;
     $.ajax({
         url: `${base_url}/alternatif/detail/id/${id}`,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: false,
-        success: function(data) {
-            
-            console.log(data)
-            for (key in data.alternatif[0]) {
-                const value = data.alternatif[0][key];
-                key = key.replace('_', ' ').toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                    return letter.toUpperCase();
-                });
-                
-                $("#modal-alternatif-detail .modal-body").append(
-                    `<div class="row"><div class="col-md-4">${key}</div><div>:</div> <div class="col-md-4">${value}</div></row>`
-                );
+        type: 'post',
+        success: function(response) {
+            console.log(response)
+                $("#modal-alternatif .modal-body").html(response)
+                $(".modal-title").text('Detail Alternatif');
+                $("button[name=submit]").hide();
             }
-
-        }
     });
-})
+}
 
 $('.editalternatif').click(function() {
     const id = $(this).data('idalternatif');
@@ -211,7 +294,7 @@ $('#modal-alternatif-detail button[data-dismiss="modal"').click(() => {
     $("#modal-alternatif-detail .modal-body").html('');
 })
 
-$("#cek_nik").click(function(){
+if(attrId == "cek_nik"){
     const nik = $("#nik").val();
    
     $.ajax({
@@ -235,5 +318,7 @@ $("#cek_nik").click(function(){
             
         }
     })
-})
+}
 
+    
+})

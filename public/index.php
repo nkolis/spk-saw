@@ -31,7 +31,7 @@ Router::add("GET", "/alternatif", AlternatifController::class, "index");
 Router::add("POST", "/alternatif/formAlternatif", AlternatifController::class, "formAddAlternatif");
 Router::add("POST", "/alternatif/tambahAlternatif", AlternatifController::class, "tambahAlternatif");
 Router::add("POST", "/alternatif/editAlternatif", AlternatifController::class, "editAlternatif");
-Router::add("GET", "/alternatif/detail/id/([0-9A-Za-z]*)", AlternatifController::class, "detail");
+Router::add("POST", "/alternatif/detail/id/([0-9A-Za-z]*)", AlternatifController::class, "detail");
 Router::add("POST", "/alternatif/delete/id/([0-9A-Za-z]*)", AlternatifController::class, "hapusAlternatif");
 //Penilaian
 Router::add("GET", "/penilaian", PenilaianController::class, "index");

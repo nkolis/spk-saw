@@ -3,7 +3,7 @@
 use SPK\App\Core\Config;
 ?>
 
-<form method="POST" action="<?= Config::getBaseUrl() ?>/alternatif/tambahAlternatif">
+<form method="POST" action="<?= Config::getBaseUrl() ?>/alternatif/tambahAlternatif" class="form-alternatif">
 
     <div class="form-group">
         <label for="nama_alternatif">Cek Nik</label>
@@ -45,3 +45,4 @@ use SPK\App\Core\Config;
 
 
     <?php } ?>
+</form>
