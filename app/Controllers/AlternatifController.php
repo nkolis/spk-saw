@@ -30,6 +30,18 @@ class AlternatifController extends Controller
         exit;
     }
 
+    function formAddAlternatif()
+    {
+        $model = [
+            "title" => "Alternatif",
+            "alternatif" => $this->model('Alternatif_Model')->findAll(),
+            "kriteria" => $this->model('Kriteria_Model')->findAll(),
+            "subkriteria" => $this->model('Subkriteria_Model')->findAll()
+        ];
+
+        $this->render("alternatif/modal/tambah", $model);
+    }
+
     function tambahAlternatif()
     {
         if (isset($_POST['submit'])) {

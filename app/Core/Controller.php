@@ -12,6 +12,11 @@ class Controller
         require __DIR__ . "/../Views/templates/footer.php";
     }
 
+    function render(string $path, array $model = [])
+    {
+        require __DIR__ . "/../Views/" . $path . "/" . "index.php";
+    }
+
     function model(string $name): object
     {
         require __DIR__ . "/../Models/$name.php";

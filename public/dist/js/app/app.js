@@ -143,9 +143,17 @@ $('.editpenduduk').click(function() {
 
 
 //alternatif
-$('button[data-target="#modal-alternatif"]').click(function() {
+$('#form-tambah-alternatif').click(function() {
     $('form').attr('action', `${base_url}/alternatif/tambahAlternatif`);
     $('h4.modal-title').text('Tambah Alternatif');
+
+    $.ajax({
+        url: `${base_url}/alternatif/formAlternatif`,
+        type: 'post',
+        success: function(response){
+            $("#modal-alternatif .modal-body").html(response);
+        }
+    })
     
 })
 
