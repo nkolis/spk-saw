@@ -30,6 +30,14 @@ class AlternatifController extends Controller
         $this->render("alternatif/modal/detail", $model);
     }
 
+    function getById()
+    {
+        echo json_encode([
+            "alternatif" => $this->model('Alternatif_Model')->findById(Router::getParamaterValue()[0])
+        ]);
+        exit;
+    }
+
     function formAddAlternatif()
     {
         $model = [
@@ -42,10 +50,32 @@ class AlternatifController extends Controller
         $this->render("alternatif/modal/tambah", $model);
     }
 
+    function formEditAlternatif()
+    {
+        $alternatifmodel =  $this->model('Alternatif_Model');
+        $model = [
+            "title" => "Alternatif",
+            "alternatif" => $alternatifmodel->findAll(),
+            "kriteria" => $this->model('Kriteria_Model')->findAll(),
+            "subkriteria" => $this->model('Subkriteria_Model')->findAll(),
+        ];
+
+        $this->render("alternatif/modal/edit", $model);
+    }
+
     function tambahAlternatif()
     {
 
         if ($this->model('Alternatif_Model')->add($_POST)) {
+            header("Location: {$_SERVER['HTTP_REFERER']} ");
+            exit;
+        };
+    }
+
+    function editAlternatif()
+    {
+
+        if ($this->model('Alternatif_Model')->update($_POST)) {
             header("Location: {$_SERVER['HTTP_REFERER']} ");
             exit;
         };

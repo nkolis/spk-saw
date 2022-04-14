@@ -58,7 +58,7 @@ class KriteriaController extends Controller
             ];
 
             if ($this->model('Kriteria_Model')->add($values)) {
-                header('Location: /kriteria');
+                header("Location: {$_SERVER['HTTP_REFERER']} ");
                 exit;
             } else {
                 echo "<script>Toast.fire({

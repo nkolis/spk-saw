@@ -23,11 +23,34 @@ class Alternatif_Model
         return $this->conn->query("SELECT * FROM {$this->table}");
     }
 
-    function findById($param, $id)
+    function findById($id)
     {
-        $result = $this->repository->findById($param, $id);
-        if (is_array($result)) return $result;
-        return [];
+
+        $query = "
+            select a.id_alternatif, k.id_kriteria, s.id_subkriteria, a.nama_alternatif, 
+            k.nama_kriteria,
+            s.nama_subkriteria
+            from data_alternatif da join 
+            alternatif a on a.id_alternatif = da.id_alternatif join
+            kriteria k on k.id_kriteria = da.id_kriteria left join
+            subkriteria s on s.id_subkriteria = da.id_subkriteria
+            where da.id_alternatif = ?;
+        ";
+        $result = $this->repository->otherQuery($query, [$id]);
+        $map = [];
+
+        foreach ($result as $row) {
+
+            $map[$row['id_alternatif']]["nama_alternatif"] = $row['nama_alternatif'];
+            $map[$row['id_alternatif']][$row["id_kriteria"]] = $row['id_subkriteria'];
+        }
+
+        $result = [];
+        foreach ($map as $index => $row) {
+            $result[] = $row;
+        }
+
+        return $result;
     }
 
     function add(array $values)
@@ -55,6 +78,28 @@ class Alternatif_Model
         }
         return false;
     }
+
+    function update(array $values)
+    {
+
+        foreach ($values as $key => $row) {
+            if ($key != 'id_alternatif') {
+                $data = [
+                    $values[$key],
+                    $values['id_alternatif'],
+                    $key
+                ];
+                $query = "UPDATE data_alternatif SET id_subkriteria = ? WHERE id_alternatif = ? AND id_kriteria = ?";
+                $this->conn->query($query, $data);
+            }
+        }
+        if ($this->conn->rowCount() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+
 
     function remove(string $id)
     {

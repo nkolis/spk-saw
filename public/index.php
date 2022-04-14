@@ -28,8 +28,10 @@ Router::add("POST", "/penduduk/editPenduduk", PendudukController::class, "editPe
 Router::add("POST", "/penduduk/delete/id/([0-9A-Za-z]*)", PendudukController::class, "hapusPenduduk");
 //Alternatif
 Router::add("GET", "/alternatif", AlternatifController::class, "index");
+Router::add("POST", "/alternatif/id/([0-9A-Za-z]*)", AlternatifController::class, "getById");
 Router::add("POST", "/alternatif/formAlternatif", AlternatifController::class, "formAddAlternatif");
 Router::add("POST", "/alternatif/tambahAlternatif", AlternatifController::class, "tambahAlternatif");
+Router::add("POST", "/alternatif/formEditAlternatif", AlternatifController::class, "formEditAlternatif");
 Router::add("POST", "/alternatif/editAlternatif", AlternatifController::class, "editAlternatif");
 Router::add("POST", "/alternatif/detail/id/([0-9A-Za-z]*)", AlternatifController::class, "detail");
 Router::add("POST", "/alternatif/delete/id/([0-9A-Za-z]*)", AlternatifController::class, "hapusAlternatif");

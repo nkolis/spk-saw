@@ -1,56 +1,6 @@
 const base_url = 'http://localhost:5000';
 
-$('a.nav-link').click(function(e){
-    
-    e.preventDefault()
-    const url = $(this).attr('href');
-    $(".container-fluid").load(`${url} .container-fluid`, function(){
-        $("#default-datatable").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-            "bDestroy": true
-        })
-        //.buttons().container().appendTo('#default-datatable_wrapper .col-md-6:eq(0)');
-        $('#simple-datatable').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "bDestroy": true
-        });
 
-        $('#simple-datatable2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "bDestroy": true
-        });
-
-        $('#simple-datatable3').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "bDestroy": true
-        });
-
-    })
-})
-$(document).click(function(e){
-    const target = e.target;
-    const attrId = target.getAttribute('id');
    
 
     
@@ -198,7 +148,10 @@ $('.editpenduduk').click(function() {
 
 
 //alternatif
-
+$(document).click(function(e){
+    const target = e.target;
+    const attrId = target.getAttribute('id');
+   
 if(attrId == 'form-tambah-alternatif'){
 
     $('form').attr('action', `${base_url}/alternatif/tambahAlternatif`);
@@ -216,10 +169,55 @@ if(attrId == 'form-tambah-alternatif'){
     
 }
 
+if(attrId == 'form-edit-alternatif'){
+   
+
+    const id = $(target).data('idalternatif');
+    
+
+    $('form').attr('action', `${base_url}/alternatif/editAlternatif`);
+    $('h4.modal-title').text('Edit Alternatif');
+   
+  
+    $.ajax({
+        url: `${base_url}/alternatif/formEditAlternatif`,
+        type: 'post',
+        success: function(response){
+            $("#modal-alternatif .modal-body").html(response);
+            $("#id_alternatif").val(id);
+            $(".modal-title").text('Edit Alternatif');
+            $("button[name=submit]").show();
+        }
+    })
+    $.ajax({
+        url: `${base_url}/alternatif/id/${id}`,
+        type: 'post',
+        dataType: 'json',
+        success: function(data){
+            const alternatif = data.alternatif[0]
+            for(let key in alternatif){
+                let selector = `#${key}`;
+                $(selector).val(alternatif[key])
+            }
+        }
+    })
+  
+    
+   // $('#simpan-alternatif').attr('id', 'simpan-edit-alternatif')
+
+    
+    
+}
+
+
 if(attrId == 'simpan-alternatif'){
-    const form = $(".form-alternatif");
+   
+    const formTambah = $(".form-alternatif");
+    const formEdit = $(".form-edit-alternatif");
+  
     let data = null
-    form.find('input').each(function(i, e){
+    if(formTambah.length) {
+    formTambah.find('input').each(function(i, e){
         if($(e).val().length == 0){
             Toast.fire({
                 icon: 'warning',
@@ -232,22 +230,48 @@ if(attrId == 'simpan-alternatif'){
        
     })
     
-    if(data!=null){
-        $.ajax({
-            url: `${base_url}/alternatif/tambahAlternatif`,
-            type: 'post',
-            data: data,
-            success: function(){
-               
-                $("#modal-alternatif").modal('hide');
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Berhasil menyimpan!'
-                });
-                $(".table").load(`${base_url}/alternatif .table`)
-            }
-        })
-     }
+    $.ajax({
+        url: `${base_url}/alternatif/tambahAlternatif`,
+        type: 'post',
+        data: data,
+        success: function(){
+           
+            $("#modal-alternatif").modal('hide');
+            $(location).attr('href', `${base_url}/alternatif`)
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil menyimpan!'
+            });
+           
+        
+        }
+    })
+
+    }
+
+if(formEdit.length){
+    data = formEdit.serialize();
+    
+    
+    $.ajax({
+        url: `${base_url}/alternatif/editAlternatif`,
+        type: 'post',
+        data: data,
+        success: function(){
+          
+            $("#modal-alternatif").modal('hide');
+            $(location).attr('href', `${base_url}/alternatif`)
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil update!'
+            });
+        }
+    })
+   
+}
+
+
+    
 }
 
 
@@ -257,7 +281,6 @@ if(attrId == 'detail-alternatif'){
         url: `${base_url}/alternatif/detail/id/${id}`,
         type: 'post',
         success: function(response) {
-            console.log(response)
                 $("#modal-alternatif .modal-body").html(response)
                 $(".modal-title").text('Detail Alternatif');
                 $("button[name=submit]").hide();
@@ -265,34 +288,6 @@ if(attrId == 'detail-alternatif'){
     });
 }
 
-$('.editalternatif').click(function() {
-    const id = $(this).data('idalternatif');
-    console.log(id);
-    $('form').attr('action', `${base_url}/alternatif/editAlternatif`);
-    $('form').append(`<input type="hidden" id="id_alternatif" name="id_alternatif" value="${id}">`);
-    $('h4.modal-title').text('Edit Alternatif');
-   
-    $('button[name=submit]').text('Update');
-
-    $.ajax({
-        url: `${base_url}/alternatif/id/${id}`,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        type: "post",
-        success: function(data) {
-            console.log(data)
-            const penduduk = data.penduduk;
-            penduduk.forEach(value => {
-                
-            });
-        }
-    });
-
-})
-
-$('#modal-alternatif-detail button[data-dismiss="modal"').click(() => {
-    $("#modal-alternatif-detail .modal-body").html('');
-})
 
 if(attrId == "cek_nik"){
     const nik = $("#nik").val();

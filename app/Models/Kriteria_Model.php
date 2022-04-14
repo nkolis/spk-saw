@@ -32,8 +32,7 @@ class Kriteria_Model
 
     function add(array $values)
     {
-        $q_kriteria = "INSERT INTO {$this->table} (id_kriteria, nama_kriteria, bobot, tipe)VALUES(?, ?, ?, ?)";
-        $this->conn->query($q_kriteria, $values);
+
 
         $q_alternatif = "SELECT id_alternatif FROM alternatif";
         $alternatif = $this->conn->query($q_alternatif);
@@ -44,6 +43,9 @@ class Kriteria_Model
             $q_dalternatif = "INSERT INTO data_alternatif (id_kriteria, id_alternatif, id_subkriteria)VALUES(?, ?)";
             $this->conn->query($q_dalternatif, $values);
         }
+
+        $q_kriteria = "INSERT INTO {$this->table} (id_kriteria, nama_kriteria, bobot, tipe)VALUES(?, ?, ?, ?)";
+        $this->conn->query($q_kriteria, $values);
 
         if ($this->conn->rowCount() > 0) {
             return true;

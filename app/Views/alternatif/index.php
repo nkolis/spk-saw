@@ -27,7 +27,7 @@ use SPK\App\Core\Config;
                         <td>
 
                             <a class="btn bg-gradient-primary btn-xs" href='#' data-toggle="modal" id="detail-alternatif" data-target="#modal-alternatif" data-id="<?= $data['id_alternatif'] ?>">Lihat</a>
-                            <a class="editalternatif btn bg-gradient-success btn-xs" data-toggle="modal" data-target="#modal-alternatif" data-idalternatif="<?= $data['id_alternatif'] ?>"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="btn bg-gradient-success btn-xs" data-toggle="modal" id="form-edit-alternatif" data-target="#modal-alternatif" data-idalternatif="<?= $data['id_alternatif'] ?>"><i data-idalternatif="<?= $data['id_alternatif'] ?>" id="form-edit-alternatif" class="fas fa-edit"></i></a>
                             <form style="display: inline-block" action="<?= Config::getBaseUrl() ?>/alternatif/delete/id/<?= $data['id_alternatif'] ?>" method="post">
                                 <button type="submit" class="btn bg-gradient-danger btn-xs" data-idkriteria="<?= $data['id_alternatif'] ?>"><i class="fas fa-trash"></i></button>
                             </form>
